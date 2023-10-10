@@ -10,6 +10,10 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
+      photo: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       title: {
         type: Sequelize.STRING,
         allowNull: false,

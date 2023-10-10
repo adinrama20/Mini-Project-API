@@ -43,6 +43,7 @@ router.get("/search", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const schema = {
+    photo: "string",
     title: "string",
     author: "string",
     publisher: "string",
