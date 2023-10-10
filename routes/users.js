@@ -92,7 +92,7 @@ router.put("/:id", async (req, res) => {
   const { id } = req.params;
 
   const schema = {
-    name: "string|empty:false", // Nama tidak boleh kosong
+    name: "string|empty:false",
     mobile: "string",
     email: "string|email",
     password: "string",
