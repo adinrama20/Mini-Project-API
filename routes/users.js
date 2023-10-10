@@ -36,13 +36,13 @@ router.post("/register", async (req, res) => {
     where: { email: req.body.email },
   });
 
-  const findMobile = await User.findOne({
-    where: { mobile: req.body.mobile },
-  });
+  // const findMobile = await User.findOne({
+  //   where: { mobile: req.body.mobile },
+  // });
 
-  if (findEmail || findMobile) {
+  if (findEmail) {
     return res.status(400).json({
-      message: "Email or mobile already exists",
+      message: "Email already exists",
       status: "Failed",
     });
   }
