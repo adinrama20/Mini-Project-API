@@ -5,11 +5,23 @@ const Validator = require("fastest-validator");
 
 const v = new Validator();
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const findUser = await User.findByPk(id);
+
+  if (!findUser) {
+    return res.status(200).json({ message: "Pengguna tidak ditemukan" });
+  }
+
+  res.status(200).json({ findUser });
+});
+
 router.post("/register", async (req, res) => {
   const schema = {
-    name: "string",
+    name: "string|empty:false",
     mobile: "string",
-    email: "string",
+    email: "string|email",
     password: "string",
     address: "string",
   };
@@ -74,6 +86,49 @@ router.post("/login", async (req, res) => {
     message: "User not found",
     status: "Failed",
   });
+});
+
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const schema = {
+    name: "string|empty:false", // Nama tidak boleh kosong
+    mobile: "string",
+    email: "string|email",
+    password: "string",
+    address: "string",
+  };
+
+  const validate = v.validate(req.body, schema);
+
+  if (validate.length) {
+    return res.status(400).json(validate);
+  }
+
+  try {
+    const user = await User.findByPk(id);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "Pengguna tidak ditemukan",
+        status: "Failed",
+      });
+    }
+
+    await user.update(req.body);
+
+    return res.status(200).json({
+      message: "Data pengguna berhasil diperbarui",
+      status: "Success",
+      data: user,
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({
+      message: "Terjadi kesalahan saat mengedit data pengguna",
+      status: "Error",
+    });
+  }
 });
 
 module.exports = router;
