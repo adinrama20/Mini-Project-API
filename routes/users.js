@@ -5,6 +5,19 @@ const Validator = require("fastest-validator");
 
 const v = new Validator();
 
+function generateRandomString(length) {
+  const charset =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let randomString = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charset.length);
+    randomString += charset[randomIndex];
+  }
+
+  return randomString;
+}
+
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -18,7 +31,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-  const schema = {
+  let schema = {
     name: "string|empty:false",
     mobile: "string",
     email: "string|email",
@@ -52,6 +65,7 @@ router.post("/register", async (req, res) => {
     message: "User added successfully",
     status: "Success",
     data: user,
+    token: generateRandomString(10),
   });
 });
 
@@ -79,12 +93,14 @@ router.post("/login", async (req, res) => {
     return res.status(200).json({
       message: "Successfully login",
       status: "Success",
+      token: generateRandomString(10),
     });
   }
 
   res.status(404).json({
     message: "User not found",
     status: "Failed",
+    token: generateRandomString(10),
   });
 });
 
