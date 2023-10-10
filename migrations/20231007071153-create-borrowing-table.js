@@ -20,6 +20,14 @@ module.exports = {
           key: "id",
         },
       },
+      tglPinjam: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      tglKembali: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,

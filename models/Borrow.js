@@ -12,6 +12,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      tglPinjam: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      tglKembali: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
