@@ -28,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         allowNull: false,
       },
+      description: {
+        type: DataTypes.TEXT,
+      },
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,

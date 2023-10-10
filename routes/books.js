@@ -48,6 +48,7 @@ router.post("/", async (req, res) => {
     author: "string",
     publisher: "string",
     publicationYear: "string",
+    description: "string",
   };
 
   const validate = v.validate(req.body, schema);

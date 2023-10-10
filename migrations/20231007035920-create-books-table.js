@@ -30,6 +30,9 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
+      description: {
+        type: Sequelize.TEXT,
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
