@@ -37,13 +37,9 @@ router.post("/", async (req, res) => {
     return res.status(400).json(validate);
   }
 
-  const findIdUser = await User.findOne({
-    where: { id: req.body.idUser },
-  });
+  const findIdUser = await User.findByPk(req.body.idUser);
 
-  const findIdBook = await Book.findOne({
-    where: { id: req.body.idBook },
-  });
+  const findIdBook = await Book.findByPk(req.body.idBook);
 
   if (!findIdUser && !findIdBook) {
     return res.status(404).json({
