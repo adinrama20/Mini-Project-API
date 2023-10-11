@@ -21,11 +21,11 @@ module.exports = {
         },
       },
       tglPinjam: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING(15),
         allowNull: false,
       },
       tglKembali: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING(15),
         allowNull: false,
       },
       createdAt: {
